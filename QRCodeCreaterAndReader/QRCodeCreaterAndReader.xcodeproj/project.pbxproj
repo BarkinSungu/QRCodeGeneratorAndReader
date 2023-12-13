@@ -13,6 +13,9 @@
 		DAED9FC92B2856DB00A6D246 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAED9FC72B2856DB00A6D246 /* Main.storyboard */; };
 		DAED9FCB2B2856DE00A6D246 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAED9FCA2B2856DE00A6D246 /* Assets.xcassets */; };
 		DAED9FCE2B2856DE00A6D246 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAED9FCC2B2856DE00A6D246 /* LaunchScreen.storyboard */; };
+		DAED9FDC2B29BE5B00A6D246 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED9FDB2B29BE5B00A6D246 /* TabBarController.swift */; };
+		DAED9FE02B29BF1D00A6D246 /* GenerateQrCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED9FDF2B29BF1D00A6D246 /* GenerateQrCodeViewController.swift */; };
+		DAED9FE32B29BF3600A6D246 /* ReadQrCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED9FE22B29BF3600A6D246 /* ReadQrCodeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		DAED9FCA2B2856DE00A6D246 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DAED9FCD2B2856DE00A6D246 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DAED9FCF2B2856DE00A6D246 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAED9FDB2B29BE5B00A6D246 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		DAED9FDF2B29BF1D00A6D246 /* GenerateQrCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateQrCodeViewController.swift; sourceTree = "<group>"; };
+		DAED9FE22B29BF3600A6D246 /* ReadQrCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadQrCodeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +81,9 @@
 		DAED9FD62B28572000A6D246 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				DAED9FDE2B29BEEE00A6D246 /* Read QR Code Screen */,
+				DAED9FDD2B29BEDF00A6D246 /* Generate QR Code Screen */,
+				DAED9FDA2B29BE2700A6D246 /* TabBar */,
 				DAED9FC52B2856DB00A6D246 /* ViewController.swift */,
 				DAED9FC72B2856DB00A6D246 /* Main.storyboard */,
 				DAED9FCC2B2856DE00A6D246 /* LaunchScreen.storyboard */,
@@ -105,6 +114,30 @@
 				DAED9FC32B2856DB00A6D246 /* SceneDelegate.swift */,
 			);
 			path = Delegates;
+			sourceTree = "<group>";
+		};
+		DAED9FDA2B29BE2700A6D246 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				DAED9FDB2B29BE5B00A6D246 /* TabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		DAED9FDD2B29BEDF00A6D246 /* Generate QR Code Screen */ = {
+			isa = PBXGroup;
+			children = (
+				DAED9FDF2B29BF1D00A6D246 /* GenerateQrCodeViewController.swift */,
+			);
+			path = "Generate QR Code Screen";
+			sourceTree = "<group>";
+		};
+		DAED9FDE2B29BEEE00A6D246 /* Read QR Code Screen */ = {
+			isa = PBXGroup;
+			children = (
+				DAED9FE22B29BF3600A6D246 /* ReadQrCodeViewController.swift */,
+			);
+			path = "Read QR Code Screen";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,9 +211,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAED9FE32B29BF3600A6D246 /* ReadQrCodeViewController.swift in Sources */,
 				DAED9FC62B2856DB00A6D246 /* ViewController.swift in Sources */,
+				DAED9FDC2B29BE5B00A6D246 /* TabBarController.swift in Sources */,
 				DAED9FC22B2856DB00A6D246 /* AppDelegate.swift in Sources */,
 				DAED9FC42B2856DB00A6D246 /* SceneDelegate.swift in Sources */,
+				DAED9FE02B29BF1D00A6D246 /* GenerateQrCodeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
