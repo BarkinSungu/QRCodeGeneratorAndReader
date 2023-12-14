@@ -15,7 +15,7 @@
 		DAED9FCE2B2856DE00A6D246 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAED9FCC2B2856DE00A6D246 /* LaunchScreen.storyboard */; };
 		DAED9FDC2B29BE5B00A6D246 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED9FDB2B29BE5B00A6D246 /* TabBarController.swift */; };
 		DAED9FE02B29BF1D00A6D246 /* GenerateQrCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED9FDF2B29BF1D00A6D246 /* GenerateQrCodeViewController.swift */; };
-		DAED9FE32B29BF3600A6D246 /* ReadQrCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED9FE22B29BF3600A6D246 /* ReadQrCodeViewController.swift */; };
+		DAED9FE52B29DEC900A6D246 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAED9FE42B29DEC900A6D246 /* QRScannerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +29,7 @@
 		DAED9FCF2B2856DE00A6D246 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAED9FDB2B29BE5B00A6D246 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		DAED9FDF2B29BF1D00A6D246 /* GenerateQrCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateQrCodeViewController.swift; sourceTree = "<group>"; };
-		DAED9FE22B29BF3600A6D246 /* ReadQrCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadQrCodeViewController.swift; sourceTree = "<group>"; };
+		DAED9FE42B29DEC900A6D246 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +81,7 @@
 		DAED9FD62B28572000A6D246 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				DAED9FDE2B29BEEE00A6D246 /* Read QR Code Screen */,
+				DAED9FDE2B29BEEE00A6D246 /* Scan QR Code Screen */,
 				DAED9FDD2B29BEDF00A6D246 /* Generate QR Code Screen */,
 				DAED9FDA2B29BE2700A6D246 /* TabBar */,
 				DAED9FC52B2856DB00A6D246 /* ViewController.swift */,
@@ -132,12 +132,12 @@
 			path = "Generate QR Code Screen";
 			sourceTree = "<group>";
 		};
-		DAED9FDE2B29BEEE00A6D246 /* Read QR Code Screen */ = {
+		DAED9FDE2B29BEEE00A6D246 /* Scan QR Code Screen */ = {
 			isa = PBXGroup;
 			children = (
-				DAED9FE22B29BF3600A6D246 /* ReadQrCodeViewController.swift */,
+				DAED9FE42B29DEC900A6D246 /* QRScannerViewController.swift */,
 			);
-			path = "Read QR Code Screen";
+			path = "Scan QR Code Screen";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,12 +211,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAED9FE32B29BF3600A6D246 /* ReadQrCodeViewController.swift in Sources */,
 				DAED9FC62B2856DB00A6D246 /* ViewController.swift in Sources */,
 				DAED9FDC2B29BE5B00A6D246 /* TabBarController.swift in Sources */,
 				DAED9FC22B2856DB00A6D246 /* AppDelegate.swift in Sources */,
 				DAED9FC42B2856DB00A6D246 /* SceneDelegate.swift in Sources */,
 				DAED9FE02B29BF1D00A6D246 /* GenerateQrCodeViewController.swift in Sources */,
+				DAED9FE52B29DEC900A6D246 /* QRScannerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

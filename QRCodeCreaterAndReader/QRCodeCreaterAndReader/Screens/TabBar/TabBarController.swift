@@ -30,7 +30,7 @@ class TabBarController: UITabBarController {
         generateQrCodeVC.tabBarItem = UITabBarItem(title: "Generate", image: UIImage(systemName: "qrcode"), tag: 0)
 
         //Create Read QR Code View Controller
-        let readQrCodeVC = ReadQrCodeViewController()
+        let readQrCodeVC = QRScannerViewController()
         readQrCodeVC.tabBarItem = UITabBarItem(title: "Read", image: UIImage(systemName: "qrcode.viewfinder"), tag: 1)
 
         //Add Views to Tab Bar
