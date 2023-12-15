@@ -5,7 +5,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
 
     let captureSession = AVCaptureSession()
     var previewLayer: AVCaptureVideoPreviewLayer!
-    let qrCodeTextField = UITextField()
+    let qrCodeTextLabel = UILabel()
     let resetButton = UIButton()
 
     override func viewDidLoad() {
@@ -52,7 +52,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
 
         // Ön izleme boyutunu ayarla
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        previewLayer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height * 0.7)
+        previewLayer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height * 1)
         previewLayer.videoGravity = .resizeAspectFill
         view.layer.addSublayer(previewLayer)
 
@@ -61,12 +61,12 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     }
 
     func setupLayout() {
-        qrCodeTextField.borderStyle = .roundedRect
-        qrCodeTextField.placeholder = "QR Kodu Buraya Yazın"
-        qrCodeTextField.translatesAutoresizingMaskIntoConstraints = false
+        qrCodeTextLabel.backgroundColor = .black
+        qrCodeTextLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        resetButton.setTitle("Reset", for: .normal)
+        resetButton.setTitle("   Reset   ", for: .normal)
         resetButton.addTarget(self, action: #selector(resetButtonTapped), for: .touchUpInside)
+        resetButton.backgroundColor = .black
         resetButton.layer.cornerRadius = 10
         resetButton.layer.borderWidth = 2.0 // Çizgi kalınlığını ayarlayın
         resetButton.translatesAutoresizingMaskIntoConstraints = false
@@ -76,7 +76,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         containerView.backgroundColor = UIColor(white: 0, alpha: 0.5) // İsterseniz bu satırı ekleyebilirsiniz, arkaplanı karanlıklaştırır
 
         view.addSubview(containerView)
-        containerView.addSubview(qrCodeTextField)
+        containerView.addSubview(qrCodeTextLabel)
         containerView.addSubview(resetButton)
 
         NSLayoutConstraint.activate([
@@ -85,14 +85,13 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             containerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3),
 
-            qrCodeTextField.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),
-            qrCodeTextField.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
-            qrCodeTextField.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 20),
-            qrCodeTextField.heightAnchor.constraint(equalToConstant: 80),
+            qrCodeTextLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),
+            qrCodeTextLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
+            qrCodeTextLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 20),
+            qrCodeTextLabel.heightAnchor.constraint(equalToConstant: 40),
             
-            resetButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),
-            resetButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
-            resetButton.topAnchor.constraint(equalTo: qrCodeTextField.bottomAnchor, constant: 20),
+            resetButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            resetButton.topAnchor.constraint(equalTo: qrCodeTextLabel.bottomAnchor, constant: 20),
             resetButton.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
@@ -112,7 +111,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
 
             // QR kodu TextField'a yaz
-            qrCodeTextField.text = stringValue
+            qrCodeTextLabel.text = stringValue
 
             // Kamerayı durdur
             captureSession.stopRunning()
