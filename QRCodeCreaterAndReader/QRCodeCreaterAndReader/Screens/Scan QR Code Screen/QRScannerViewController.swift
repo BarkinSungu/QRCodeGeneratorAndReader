@@ -11,13 +11,13 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Kamera ön izleme ekranı oluştur
+        // Create camera preview screen
         setupCamera()
 
-        // QR kodu göstermek için bir TextField oluştur
+        // Create a TextField to show QR code
         setupLayout()
 
-        // Kamera ön izleme başlat
+        // Start camera preview screen
         captureSession.startRunning()
     }
 
@@ -50,19 +50,23 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             return
         }
 
-        // Ön izleme boyutunu ayarla
+        // Set preview size
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height * 1)
         previewLayer.videoGravity = .resizeAspectFill
         view.layer.addSublayer(previewLayer)
 
-        // MetadataOutput'un frame'ini ayarla
+        // Set MetadataOutputs frame
         metadataOutput.rectOfInterest = CGRect(x: 0, y: 0, width: 1, height: 0.7)
     }
 
     func setupLayout() {
         qrCodeTextLabel.backgroundColor = .black
         qrCodeTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        qrCodeTextLabel.isUserInteractionEnabled = true // UILabel'ı etkileşimli hale getir
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(textLabelTapped))
+        qrCodeTextLabel.addGestureRecognizer(tapGesture)
         
         resetButton.setTitle("   Reset   ", for: .normal)
         resetButton.addTarget(self, action: #selector(resetButtonTapped), for: .touchUpInside)
@@ -73,7 +77,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
 
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.backgroundColor = UIColor(white: 0, alpha: 0.5) // İsterseniz bu satırı ekleyebilirsiniz, arkaplanı karanlıklaştırır
+        containerView.backgroundColor = UIColor(white: 0, alpha: 0.5) // get darker background
 
         view.addSubview(containerView)
         containerView.addSubview(qrCodeTextLabel)
@@ -97,29 +101,56 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     }
 
     func failed() {
-        let ac = UIAlertController(title: "Tarama Başarısız", message: "Cihazınızın kamerasını kullanamıyoruz.", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "Tamam", style: .default))
+        let ac = UIAlertController(title: "Scanning fail", message: "Can not found device camera", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
         present(ac, animated: true)
         captureSession.stopRunning()
     }
 
-    // QR kodu tespit edildiğinde bu metod çağrılır
+    // This method is called when the QR code is detected
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if let metadataObject = metadataObjects.first {
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
 
-            // QR kodu TextField'a yaz
+            // Write QR code to TextField
             qrCodeTextLabel.text = stringValue
 
-            // Kamerayı durdur
+            // Stop camera
             captureSession.stopRunning()
         }
     }
     
     @objc func resetButtonTapped() {
-        //Kamerayı çalıştır
+        // Start camera
         captureSession.startRunning()
+    }
+    
+    @objc func textLabelTapped(_ sender: UITapGestureRecognizer) {
+        showCopyButton(for: qrCodeTextLabel, at: sender.location(in: qrCodeTextLabel))
+    }
+
+    func showCopyButton(for label: UILabel, at location: CGPoint) {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        alertController.addAction(UIAlertAction(title: "Copy", style: .default, handler: { [weak self] _ in
+            guard let textToCopy = label.text else { return }
+            UIPasteboard.general.string = textToCopy
+
+            let alert = UIAlertController(title: "Copied", message: "Text copied to clipborad", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self?.present(alert, animated: true, completion: nil)
+        }))
+
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.sourceView = label
+            popoverController.sourceRect = CGRect(x: location.x, y: location.y, width: 0, height: 0)
+            popoverController.permittedArrowDirections = [.up, .down]
+        }
+
+        present(alertController, animated: true, completion: nil)
     }
 }
